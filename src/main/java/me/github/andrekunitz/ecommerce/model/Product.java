@@ -1,4 +1,4 @@
-package me.github.andrekunitz.model;
+package me.github.andrekunitz.ecommerce.model;
 
 import java.math.BigDecimal;
 

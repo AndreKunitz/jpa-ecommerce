@@ -1,10 +1,10 @@
-package me.github.andrekunitz.util;
+package me.github.andrekunitz.ecommerce.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import me.github.andrekunitz.model.Product;
+import me.github.andrekunitz.ecommerce.model.Product;
 
 public class InitPersistenceUnit {
 
