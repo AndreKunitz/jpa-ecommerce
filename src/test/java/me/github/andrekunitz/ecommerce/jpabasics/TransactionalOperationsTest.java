@@ -87,4 +87,22 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 		Product productVerification = entityManager.find(Product.class, product.getId());
 		Assert.assertEquals("Kindle Paperwhite 2° gen.", product.getName());
 	}
+
+	@Test
+	public void insertObjectWithMerge() {
+		Product product = new Product();
+		product.setId(4);
+		product.setName("Rhode microphone");
+		product.setDescription("The best sound quality.");
+		product.setPrice(new BigDecimal(1000));
+
+		entityManager.getTransaction().begin();
+		entityManager.merge(product);
+		entityManager.getTransaction().commit();
+
+		entityManager.clear();
+
+		Product productVerification = entityManager.find(Product.class, product.getId());
+		Assert.assertNotNull(productVerification);
+	}
 }
