@@ -49,7 +49,28 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 		entityManager.remove(product);
 		entityManager.getTransaction().commit();
 
+//		entityManager.clear(); -> Not needed, since #remove already removes the object from entity manager memory.
+
 		Product productVerification = entityManager.find(Product.class, product.getId());
 		Assert.assertNull(productVerification);
+	}
+
+	@Test
+	public void updateObject() {
+		Product product = new Product();
+		product.setId(1);
+		product.setName("Kindle Paperwhite");
+		product.setDescription("Meet the new Kindle.");
+		product.setPrice(new BigDecimal(599));
+
+		entityManager.getTransaction().begin();
+		entityManager.merge(product);
+		entityManager.getTransaction().commit();
+
+		entityManager.clear();
+
+		Product productVerification = entityManager.find(Product.class, product.getId());
+		Assert.assertNotNull(productVerification);
+		Assert.assertEquals("Kindle Paperwhite", product.getName());
 	}
 }
