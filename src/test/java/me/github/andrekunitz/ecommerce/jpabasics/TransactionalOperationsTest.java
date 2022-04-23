@@ -11,6 +11,19 @@ import me.github.andrekunitz.ecommerce.model.Product;
 public class TransactionalOperationsTest extends EntityManagerTest {
 
 	@Test
+	public void openAndCloseTransaction() {
+//		Product product = new Product();
+
+		entityManager.getTransaction().begin();
+
+//		entityManager.persist(product);
+//		entityManager.merge(product);
+//		entityManager.remove(product);
+
+		entityManager.getTransaction().commit();
+	}
+
+	@Test
 	public void insertFirstObject() {
 		Product product = new Product();
 		product.setId(2);
@@ -24,20 +37,19 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 
 		entityManager.clear();
 
-		Product verifiedProduct = entityManager.find(Product.class, product.getId());
-		Assert.assertNotNull(verifiedProduct);
+		Product productVerification = entityManager.find(Product.class, product.getId());
+		Assert.assertNotNull(productVerification);
 	}
 
 	@Test
-	public void openAndCloseTransaction() {
-//		Product product = new Product();
+	public void removeObject() {
+		Product product = entityManager.find(Product.class, 3);
 
 		entityManager.getTransaction().begin();
-
-//		entityManager.persist(product);
-//		entityManager.merge(product);
-//		entityManager.remove(product);
-
+		entityManager.remove(product);
 		entityManager.getTransaction().commit();
+
+		Product productVerification = entityManager.find(Product.class, product.getId());
+		Assert.assertNull(productVerification);
 	}
 }
