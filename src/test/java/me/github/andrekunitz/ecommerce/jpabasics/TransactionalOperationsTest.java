@@ -105,4 +105,42 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 		Product productVerification = entityManager.find(Product.class, product.getId());
 		Assert.assertNotNull(productVerification);
 	}
+
+	@Test
+	public void differenceBetweenPersistAndMerge() {
+		Product productPersist = new Product();
+		productPersist.setId(4);
+		productPersist.setName("Smartphone One Plus");
+		productPersist.setDescription("The fastest processor.");
+		productPersist.setPrice(new BigDecimal(2000));
+
+		entityManager.getTransaction().begin();
+		entityManager.persist(productPersist);
+		productPersist.setName("Smartphone Two Plus");
+		entityManager.getTransaction().commit();
+
+		entityManager.clear();
+
+		Product productVerificationPersist = entityManager.find(Product.class, productPersist.getId());
+		Assert.assertNotNull(productVerificationPersist);
+
+
+
+		Product productMerge = new Product();
+		productMerge.setId(4);
+		productMerge.setName("Dell Notebook");
+		productMerge.setDescription("The best one.");
+		productMerge.setPrice(new BigDecimal(2000));
+
+		entityManager.getTransaction().begin();
+		// #merge makes a copy of the object, so you have to get it back in the return to set subsequent changes.
+		productMerge = entityManager.merge(productMerge);
+		productMerge.setName("Dell Notebook 2");
+		entityManager.getTransaction().commit();
+
+		entityManager.clear();
+
+		Product productVerificationMerge = entityManager.find(Product.class, productMerge.getId());
+		Assert.assertNotNull(productVerificationMerge);
+	}
 }
