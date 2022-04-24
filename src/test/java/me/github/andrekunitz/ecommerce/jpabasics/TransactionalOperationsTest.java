@@ -26,7 +26,6 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 	@Test
 	public void insertFirstObject() {
 		Product product = new Product();
-		product.setId(2);
 		product.setName("Canon Camera");
 		product.setDescription("The best definition for your photos.");
 		product.setPrice(new BigDecimal(5000));
@@ -109,7 +108,6 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 	@Test
 	public void differenceBetweenPersistAndMerge() {
 		Product productPersist = new Product();
-		productPersist.setId(5);
 		productPersist.setName("Smartphone One Plus");
 		productPersist.setDescription("The fastest processor.");
 		productPersist.setPrice(new BigDecimal(2000));
@@ -127,7 +125,6 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 
 
 		Product productMerge = new Product();
-		productMerge.setId(6);
 		productMerge.setName("Dell Notebook");
 		productMerge.setDescription("The best one.");
 		productMerge.setPrice(new BigDecimal(2000));
