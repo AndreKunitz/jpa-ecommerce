@@ -1,5 +1,8 @@
 package me.github.andrekunitz.ecommerce.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,13 +14,19 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Client {
+public class Order {
 
 	@EqualsAndHashCode.Include
 	@Id
 	private Integer id;
 
-	private String name;
+	private LocalDateTime orderDate;
 
-	private Gender gender;
+	private LocalDateTime conclusionDate;
+
+	private Integer invoiceId;
+
+	private BigDecimal total;
+
+	private OrderStatus status;
 }

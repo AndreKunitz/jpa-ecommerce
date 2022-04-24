@@ -1,5 +1,7 @@
 package me.github.andrekunitz.ecommerce.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,13 +13,15 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Client {
+public class Invoice {
 
 	@EqualsAndHashCode.Include
 	@Id
 	private Integer id;
 
-	private String name;
+	private Integer orderId;
 
-	private Gender gender;
+	private String xml;
+
+	private Date issueDate;
 }
