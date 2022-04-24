@@ -109,7 +109,7 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 	@Test
 	public void differenceBetweenPersistAndMerge() {
 		Product productPersist = new Product();
-		productPersist.setId(4);
+		productPersist.setId(5);
 		productPersist.setName("Smartphone One Plus");
 		productPersist.setDescription("The fastest processor.");
 		productPersist.setPrice(new BigDecimal(2000));
@@ -127,7 +127,7 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 
 
 		Product productMerge = new Product();
-		productMerge.setId(4);
+		productMerge.setId(6);
 		productMerge.setName("Dell Notebook");
 		productMerge.setDescription("The best one.");
 		productMerge.setPrice(new BigDecimal(2000));
