@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -34,5 +36,6 @@ public class Order {
 
 	private BigDecimal total;
 
+	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
 }

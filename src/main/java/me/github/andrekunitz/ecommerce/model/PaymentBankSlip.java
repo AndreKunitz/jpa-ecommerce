@@ -2,6 +2,8 @@ package me.github.andrekunitz.ecommerce.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -23,6 +25,7 @@ public class PaymentBankSlip {
 	@Column(name = "order_id")
 	private Integer orderId;
 
+	@Enumerated(EnumType.STRING)
 	private PaymentStatus status;
 
 	@Column(name = "bar_code")
