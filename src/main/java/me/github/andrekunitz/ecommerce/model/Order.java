@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 
 	@EqualsAndHashCode.Include
@@ -31,11 +32,14 @@ public class Order {
 	@Column(name = "conclusion_date")
 	private LocalDateTime conclusionDate;
 
-	@Column(name = "invoince_id")
+	@Column(name = "invoice_id")
 	private Integer invoiceId;
 
 	private BigDecimal total;
 
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
+
+	@Embedded
+	private OrderDeliveryAddress deliveryAddress;
 }
