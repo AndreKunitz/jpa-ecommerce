@@ -143,4 +143,19 @@ public class TransactionalOperationsTest extends EntityManagerTest {
 		Product productVerificationMerge = entityManager.find(Product.class, productMerge.getId());
 		Assert.assertNotNull(productVerificationMerge);
 	}
+
+	@Test
+	public void blockOperationWithDatabase() {
+		Product product = entityManager.find(Product.class, 1);
+		entityManager.detach(product);
+
+		entityManager.getTransaction().begin();
+		product.setName("Kindle Paperwhite 2° gen.");
+		entityManager.getTransaction().commit();
+
+		entityManager.clear();
+
+		Product productVerification = entityManager.find(Product.class, product.getId());
+		Assert.assertEquals("Kindle", productVerification.getName());
+	}
 }
