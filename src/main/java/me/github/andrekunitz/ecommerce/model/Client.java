@@ -1,11 +1,14 @@
 package me.github.andrekunitz.ecommerce.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -28,4 +31,7 @@ public class Client {
 
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
+
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders;
 }
