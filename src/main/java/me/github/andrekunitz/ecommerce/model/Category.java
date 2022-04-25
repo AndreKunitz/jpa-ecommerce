@@ -1,10 +1,14 @@
 package me.github.andrekunitz.ecommerce.model;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -25,6 +29,10 @@ public class Category {
 
 	private String name;
 
-	@Column(name = "parent_category_id")
-	private Integer parentCategoryId;
+	@ManyToOne
+	@JoinColumn(name = "parent_category_id")
+	private Category parentCategory;
+
+	@OneToMany(mappedBy = "parentCategory")
+	private List<Category> childCategories;
 }
