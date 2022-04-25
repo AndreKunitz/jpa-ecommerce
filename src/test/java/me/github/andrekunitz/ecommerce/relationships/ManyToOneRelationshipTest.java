@@ -37,7 +37,7 @@ public class ManyToOneRelationshipTest extends EntityManagerTest {
 	}
 
 	@Test
-	public void verifyOrderLineItemRelationship() {
+	public void verifyOrderLineItemManyToOneRelationship() {
 		Client client = entityManager.find(Client.class, 1);
 		Product product = entityManager.find(Product.class, 1);
 
